@@ -38,7 +38,15 @@ public class JFPenjualan extends javax.swing.JFrame {
         TF_Tanggal.setEnabled(false);
         jual = new CPenjualan(this);
         jual.BuatTabelKeranjang();
+        jual.isiTabelTransaksi();
+        TF_Total.setEnabled(false);
+        TF_Kembalian.setEnabled(false);
 
+    }
+    
+    public JTable getDataTableTransaksi()
+    {
+       return JT_Transaksi;
     }
 
     public JTable getDataTableBarang()
@@ -97,9 +105,21 @@ public class JFPenjualan extends javax.swing.JFrame {
         TF_Kobar.setText(null);
         TF_Jumlah.setText(null);
 //        TF_Total.setText(null);
-        TF_Kembalian.setText(null);
-        TF_Uang.setText(null);
+//        TF_Kembalian.setText(null);
+//        TF_Uang.setText(null);
         TF_Kobar.requestFocus();
+    }
+    
+    public void resetBayar()
+    {
+        TF_Total.setText(null);
+        TF_Uang.setText(null);
+        TF_Kembalian.setText(null);
+    }
+    
+    public JTable getDatatableTransaksi()
+    {
+        return JT_Transaksi;
     }
     
 
@@ -331,6 +351,12 @@ public class JFPenjualan extends javax.swing.JFrame {
 
         jLabel7.setText("Uang Kembali");
 
+        TF_Uang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TF_UangKeyReleased(evt);
+            }
+        });
+
         Btn_Cari_Kopel.setText("...");
         Btn_Cari_Kopel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,6 +427,11 @@ public class JFPenjualan extends javax.swing.JFrame {
         );
 
         Btn_Bayar.setText("Bayar");
+        Btn_Bayar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_BayarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tabel Transaksi Penjualan Barang"));
 
@@ -605,6 +636,20 @@ public class JFPenjualan extends javax.swing.JFrame {
         jual.HtgTotal();
         resetInput();
     }//GEN-LAST:event_Btn_Tambah_KeranjangActionPerformed
+
+    private void TF_UangKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TF_UangKeyReleased
+        // TODO add your handling code here:
+        double total = Double.parseDouble(TF_Total.getText());
+        double uang = Double.parseDouble(TF_Uang.getText());
+        TF_Kembalian.setText(Double.toString(uang-total));
+    }//GEN-LAST:event_TF_UangKeyReleased
+
+    private void Btn_BayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_BayarActionPerformed
+        // TODO add your handling code here:
+        jual.simpan(this);
+        resetBayar();
+        jual.isiTabelTransaksi();
+    }//GEN-LAST:event_Btn_BayarActionPerformed
 
     /**
      * @param args the command line arguments

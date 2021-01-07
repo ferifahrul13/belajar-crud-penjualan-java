@@ -7,12 +7,16 @@ package Controller;
 
 import DAO.DAOBarang;
 import DAO.DAOPelanggan;
+import DAO.DAOPenjualan;
 import DAOImpl.DAOImplPelanggan;
 import DAOImpl.DAOImplBarang;
+import DAOImpl.DAOImplPenjualan;
 import Model.MBarang;
 import Model.MPelanggan;
+import Model.MPenjualan;
 import TabelModel.TMBarang;
 import TabelModel.TMPelanggan;
+import TabelModel.TMPenjualan;
 import View.JFPenjualan;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -26,6 +30,9 @@ public class CPenjualan {
 
     JFPenjualan jual;
 
+    DAOPenjualan penjual;
+    List<MPenjualan> lpel;
+
     DAOPelanggan pelanggan;
     List<MPelanggan> lp;
 
@@ -38,6 +45,7 @@ public class CPenjualan {
         this.jual = Jual;
         pelanggan = new DAOImplPelanggan();
         barang = new DAOImplBarang();
+        penjual = new DAOImplPenjualan();
     }
 
     public void isiTabelPelanggan() {
@@ -123,26 +131,52 @@ public class CPenjualan {
             for (int i = 0; i < jual.getDataTableKeranjang().getRowCount(); i++) {
                 double total = Double.parseDouble(
                         jual.getDataTableKeranjang().getValueAt(i, 3).toString()
-                        )
-                        * 
-                        Double.parseDouble(
+                )
+                        * Double.parseDouble(
                                 jual.getDataTableKeranjang().getValueAt(i, 4).toString()
                         );
-                        
-                
+
                 totalBayar += total;
 
             }
         }
         jual.getTotal().setText(Double.toString(totalBayar));
     }
-    
-    public void HpsKeranjang()
-    {
-        if(jual.getDataTableKeranjang().getRowCount() != 0)
-        {
+
+    public void HpsKeranjang() {
+        if (jual.getDataTableKeranjang().getRowCount() != 0) {
             dtm.removeRow(jual.getDataTableKeranjang().getSelectedRow());
         }
     }
 
+    public void isiTabelTransaksi() {
+
+        lpel = penjual.GetAll();
+        TMPenjualan tmp = new TMPenjualan(lpel);
+        jual.getDataTableTransaksi().setModel(tmp);
+    }
+
+    public void simpan(JFPenjualan data) {
+        if (data.getDataTableKeranjang().getModel().getRowCount() > 0) {
+            for (int i = 0; i < data.getDataTableKeranjang().getModel().getRowCount(); i++) {
+                MPenjualan mp = new MPenjualan();
+
+                mp.setTanggal(data.getDataTableKeranjang().getValueAt(i, 0).toString());
+                mp.setKopel(data.getDataTableKeranjang().getValueAt(i, 1).toString());
+                mp.setKobar(data.getDataTableKeranjang().getValueAt(i, 2).toString());
+                mp.setJumlah(data.getDataTableKeranjang().getValueAt(i, 3).toString());
+                mp.setHarga(data.getDataTableKeranjang().getValueAt(i, 3).toString());
+                mp.setTotal(
+                        Double.toString(Double.parseDouble(data.getDataTableKeranjang().getValueAt(i, 3).toString())
+                                * Double.parseDouble(data.getDataTableKeranjang().getValueAt(i, 4).toString()
+                                )
+                        )
+                );
+                
+                penjual.simpan(mp);
+            }
+        }
+        
+        BuatTabelKeranjang();
+    }
 }
