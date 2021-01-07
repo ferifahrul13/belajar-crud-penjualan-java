@@ -5,19 +5,16 @@
  */
 package DAO;
 
-import Model.MBarang;
+import Model.MPembelian;
 import java.util.List;
 /**
  *
  * @author ferifahrul
  */
-
-public interface DAOBarang {
+public interface DAOPembelian {
     
-    public void insert(MBarang b);
-    public void update(MBarang b);
-    public List<MBarang>GetAll();
-    public List<MBarang>Search(String Keyword);
-    public void delete(String kode);
+    public List<MPembelian> GetAll();
+    
+    public void simpan(MPembelian data);
     
 }

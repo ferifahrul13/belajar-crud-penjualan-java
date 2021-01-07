@@ -129,6 +129,41 @@ public class DAOImplBarang implements DAOBarang{
         return list;
     }
     
+    @Override
+    public List<MBarang>Search(String Keyword) {
+    
+        con = new Koneksi().connection();
+        List<MBarang> list = null;
+        
+        try {
+            String sql = "select * from barang where kobar like ?";
+            list = new ArrayList<MBarang>();
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1,"%"+Keyword+"%");
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()){
+                MBarang mb = new MBarang(
+                
+                        rs.getString("kobar"),
+                        rs.getString("nabar"),
+                        rs.getDouble("harga"),
+                        rs.getInt("jumlah"),
+                        rs.getString("keterangan")
+                );
+                mb.setKode(rs.getString("kobar"));
+                mb.setNama(rs.getString("nabar"));
+                mb.setHarga(rs.getDouble("harga"));
+                mb.setJumlah(rs.getInt("jumlah"));
+                mb.setKeterangan(rs.getString("keterangan"));
+                list.add(mb);
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
+        }
+        
+        return list;
+    }
+    
     
     
 }

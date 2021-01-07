@@ -3,13 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAO/DAOPelanggan.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAOImpl/DAOImplBarang.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/View/JFPembelian.java</file>
             <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/Model/MPetugas.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAOImpl/DAOImplPembelian.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/TabelModel/TMPembelian.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/Controller/CPetugas.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/Config/Koneksi.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/Controller/CPembelian.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAO/DAOPelanggan.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/Model/MPembelian.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAO/DAOBarang.java</file>
             <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAO/DAOSupplier.java</file>
             <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAOImpl/DAOImplSupplier.java</file>
-            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/Controller/CPetugas.java</file>
             <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAOImpl/DAOImplPetugas.java</file>
             <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAO/DAOPetugas.java</file>
+            <file>file:/home/ferifahrul/NetBeansProjects/Penjualan/src/DAO/DAOPembelian.java</file>
         </group>
     </open-files>
 </project-private>
